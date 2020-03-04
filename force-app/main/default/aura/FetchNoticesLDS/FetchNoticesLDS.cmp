@@ -1,0 +1,46 @@
+<aura:component
+    implements="flexipage:availableForAllPageTypes,lightning:actionOverride,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:appHostable"
+    controller="CRUD">
+    <ltng:require styles="{! $Resource.boostrap441 + '/bootstrap-4.4.1-dist/css/bootstrap.min.css'}" scripts="{!join(',', 
+    $Resource.jQuery224 , 
+    $Resource.boostrap441 + '/bootstrap-4.4.1-dist/js/bootstrap.min.js')
+  }" />
+    <!--To ensure proper rendering and touch zooming using below meta tag-->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:attribute name="recordId" type="String" />
+    <aura:attribute name="noticeList" type="Notice__c[]" />
+    <div class="container">
+        <p style="text-align: center; color:purple;font-size:15px">Powered by LDS© {FetchNoticesLDS.cmp}
+            <br></br>Buttons are built with
+            custom button tag on the HTML*var Val = event.target.value</p>
+
+        <aura:iteration items="{!v.noticeList}" var="item">
+            <lightning:recordViewForm recordId="{!item.Id}" objectApiName="Notice__c">
+                <div class="slds-grid">
+                    <div class="slds-col slds-size_1-of-1">
+                        <lightning:outputField fieldName="Name" />
+                        <aura:if isTrue="{!item.Priority__c == 'High'}">
+                            <lightning:outputField style="" fieldName="Priority__c" />
+                            <aura:set attribute="else">
+                                <aura:if isTrue="{!item.Priority__c == 'Medium'}">
+                                    <lightning:outputField style="" fieldName="Priority__c" />
+                                    <aura:set attribute="else">
+                                        <lightning:outputField style="" fieldName="Priority__c" />
+                                    </aura:set>
+                                </aura:if>
+                            </aura:set>
+                        </aura:if>
+                        <div><button class="gradient-button-1" name="{!item.Id}" value="{!item.Id}" type="button"
+                                onclick="{!c.doEdit}">Modify</button>
+                            <button class="gradient-button-1" name="{!item.Id}" value="{!item.Id}" type="button"
+                                onclick="{!c.doDelete}">Delete</button>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                </hr>
+            </lightning:recordViewForm>
+        </aura:iteration>
+    </div>
+</aura:component>

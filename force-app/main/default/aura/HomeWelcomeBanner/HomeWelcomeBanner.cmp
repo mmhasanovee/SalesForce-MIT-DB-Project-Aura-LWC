@@ -1,0 +1,39 @@
+<aura:component>
+
+    <aura:attribute name="TagLine" type="String" />
+    <aura:attribute name="message" type="String" />
+    <div class="slds-page-header" style="background-color: rgb(104, 33, 100)) ;opacity: 0.8;">
+        <div class="slds-page-header__row">
+            <div class="slds-page-header__col-title">
+                <div class="slds-media">
+                    <div class="slds-media__figure">
+                        <span class="slds-icon_container slds-icon-standard-opportunity" title="opportunity">
+
+                        </span>
+                    </div>
+                    <div class="slds-media__body">
+                        <div class="slds-page-header__name">
+
+                            <div class="slds-page-header__name-title">
+                                <h1>
+                                    <span style="font-size: 30px;" class="slds-page-header__title slds-truncate fk">
+                                        {!v.TagLine}
+
+                                    </span>
+                                </h1>
+
+                            </div>
+                        </div>
+                        <p style="font-size: 30px;color:rgb(141, 231, 194)(197, 50, 50); text-align:center;">
+                            {!v.TagLine}©
+
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <c:DigitalClock />
+
+</aura:component>

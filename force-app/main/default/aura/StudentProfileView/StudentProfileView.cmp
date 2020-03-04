@@ -1,0 +1,27 @@
+<aura:component implements="force:hasRecordId,force:hasSObjectName,flexipage:availableForAllPageTypes">
+
+
+    <!-- ****************Loading bootstrap/jquery from static resource*************************** -->
+    <ltng:require styles="{! $Resource.boostrap441 + '/bootstrap-4.4.1-dist/css/bootstrap.min.css'}" scripts="{!join(',', 
+      $Resource.jQuery224 , 
+      $Resource.boostrap441 + '/bootstrap-4.4.1-dist/js/bootstrap.min.js')
+    }" />
+    <!--To ensure proper rendering and touch zooming using below meta tag-->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- ****************Loading bootstrap/jquery from static resource*************************** -->
+    <aura:attribute name="title" type="String" default="Custom Title" />
+    <div class="container slds-clearfix">
+        <lightning:card>
+            <aura:set attribute="title">
+                <lightning:icon iconName="utility:connected_apps" size="small" />
+
+            </aura:set>
+            <aura:set attribute="footer">
+                <lightning:badge label="Tag1" />
+                <lightning:badge label="Tag2" />
+                <lightning:badge label="Tag3" />
+            </aura:set>
+            <img style="width:150px;height:150px;float:right;" src="{!$Resource.noImage}" alt="" />
+        </lightning:card>
+    </div>
+</aura:component>

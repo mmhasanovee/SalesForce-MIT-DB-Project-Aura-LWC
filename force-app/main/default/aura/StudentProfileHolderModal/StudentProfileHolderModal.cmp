@@ -1,0 +1,9 @@
+<aura:component implements="force:hasRecordId,force:hasSObjectName,flexipage:availableForAllPageTypes">
+    <lightning:overlayLibrary aura:id="overlayLib" />
+    <!-- <aura:handler event="c:IdPassingAppEvent" action="{!c.handleApplicationEvent}"/> -->
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:attribute name="profileId" type="String" />
+    <aura:handler name="init" value="{!this}" action="{!c.handleShowModal}" />
+    <!-- <lightning:button name="modal" label="Show Modal" onclick="{!c.handleShowModal}" /> -->
+</aura:component>

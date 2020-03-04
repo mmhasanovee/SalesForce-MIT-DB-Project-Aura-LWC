@@ -1,0 +1,12 @@
+<!-- this tab is actually functioning as a tablist, not only for noticeTab -->
+
+<aura:component implements="force:hasRecordId,force:hasSObjectName,flexipage:availableForAllPageTypes">
+    <lightning:tabset variant="scoped" class="slds-p-top_x-small ">
+        <lightning:tab onactive="{! c.handleActive }" label="All Notices" id="list" />
+        <lightning:tab onactive="{! c.handleActive }" label="Post a new notice" id="post" />
+        <lightning:tab onactive="{! c.handleActive }" label="Show Weather Forecast" id="weather" />
+        <lightning:tab onactive="{! c.handleActive }" label="Show student Informations" id="studentInfo" />
+        <lightning:tab onactive="{! c.handleActive }" label="Insert new student" id="insertStudent" />
+
+    </lightning:tabset>
+</aura:component>

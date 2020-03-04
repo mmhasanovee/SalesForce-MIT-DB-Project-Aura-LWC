@@ -1,0 +1,70 @@
+<aura:component controller="FetchDataTable">
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:attribute name="studentList" type="Student__c" />
+    <aura:attribute name="idToDelete" type="List" />
+    <aura:attribute name="isLoading" type="Boolean" default="false" />
+    <aura:attribute name="dataOffset" type="Integer" default="5" />
+    <lightning:navigation aura:id="navigation" />
+    <lightning:overlayLibrary aura:id="overlayLib" />
+
+    <ltng:require styles="{! $Resource.boostrap441 + '/bootstrap-4.4.1-dist/css/bootstrap.min.css'}" scripts="{!join(',', 
+    $Resource.jQuery224 , 
+    $Resource.boostrap441 + '/bootstrap-4.4.1-dist/js/bootstrap.min.js')
+  }" />
+    <!--To ensure proper rendering and touch zooming using below meta tag-->
+    <p style="text-align: center; color:purple">Powered by
+        Custom-Table-Lazy-Loading©&nbsp;&nbsp;{FetchStudentInformationLazyDT.cmp}
+    </p>
+    <div class="container" style="height: 300px;overflow:auto;overflow-x:hidden;" id="customers"
+        onscroll="{!c.onScrollX}">
+        <table>
+            <tr>
+                <th>Checkbox</th>
+                <th>Profile</th>
+                <th>Image</th>
+                <th>Name</th>
+                <th>Id</th>
+                <th>Gender</th>
+                <th>Semester</th>
+            </tr>
+            <aura:iteration items="{!v.studentList}" var="acc">
+                <aura:if isTrue="{!acc.Img_Url__c == NULL}">
+                    <tr>
+                        <td>
+                            <ui:inputCheckbox name="{!acc.Id}" label="" change="{!c.onCheck}" />
+
+                        </td>
+                        <td><button class="btn btn-dark" name="{!acc.Id}" value="{!acc.Id}" type="button"
+                                onclick="{!c.profileView}">Profile</button></td>
+
+                        <td><img style="width:60px;height:60px;" src="{!$Resource.noImage}" alt="" /></td>
+                        <td>{!acc.Name}</td>
+                        <td>{!acc.Student_Id__c}</td>
+                        <td>{!acc.Gender__c}</td>
+                        <td>{!acc.Semester__c}</td>
+                    </tr>
+                    <aura:set attribute="else">
+                        <tr>
+                            <td>
+                                <ui:inputCheckbox name="{!acc.Id}" label="" change="{!c.onCheck}" />
+
+                            </td>
+                            <td>
+                                <button class="btn btn-dark" name="{!acc.Id}" value="{!acc.Id}" type="button"
+                                    onclick="{!c.profileView}">Profile</button>
+                            </td>
+
+                            <td><img style="width:60px;height:60px;" src="{!acc.Img_Url__c}" alt="" /></td>
+                            <td>{!acc.Name}</td>
+                            <td>{!acc.Student_Id__c}</td>
+                            <td>{!acc.Gender__c}</td>
+                            <td>{!acc.Semester__c}</td>
+                        </tr>
+                    </aura:set>
+                </aura:if>
+            </aura:iteration>
+        </table>
+    </div>
+
+    <div><button class="gradient-button-1" type="button" onclick="{!c.doDelete}">Delete</button></div>
+</aura:component>

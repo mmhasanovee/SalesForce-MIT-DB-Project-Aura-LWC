@@ -1,0 +1,18 @@
+<aura:component>
+    <!-- Create a Record with a Custom Layout Using lightning:recordEditForm -->
+    <p style="text-align: center; color:purple">Powered by LDS©{PostNewNoticeLDS.cmp}</p>
+    <lightning:recordEditForm objectApiName="Notice__c">
+        <lightning:messages />
+        <div class="slds-grid">
+            <div class="slds-col slds-size_2-of-3">
+                <lightning:inputField fieldName="Name" />
+            </div>
+            <div class="slds-col slds-size_1-of-3">
+                <lightning:inputField fieldName="Priority__c" />
+            </div>
+        </div>
+        <lightning:button class="slds-m-top_small" type="submit" label="Post new notice" onclick="{!c.recordSaved}" />
+    </lightning:recordEditForm>
+
+
+</aura:component>

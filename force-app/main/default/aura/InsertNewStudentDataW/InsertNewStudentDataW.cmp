@@ -1,0 +1,62 @@
+<aura:component implements="force:hasRecordId,force:hasSObjectName,flexipage:availableForAllPageTypes"
+    controller="CRUD">
+
+    <aura:attribute type="Boolean" default="true" name="buttonDis" />
+
+    <!-- ****************Loading bootstrap/jquery from static resource*************************** -->
+    <!-- <ltng:require styles="{! $Resource.boostrap441 + '/bootstrap-4.4.1-dist/css/bootstrap.min.css'}" scripts="{!join(',', 
+      $Resource.jQuery224 , 
+      $Resource.boostrap441 + '/bootstrap-4.4.1-dist/js/bootstrap.min.js')
+    }" afterScriptsLoaded="{!c.scriptsLoaded}" /> -->
+    <!--To ensure proper rendering and touch zooming using below meta tag-->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- ****************Loading bootstrap/jquery from static resource*************************** -->
+
+
+
+    <aura:attribute name="accountId" type="String" />
+    <aura:attribute name="InsertStudent" type="Student__c" default="{
+                                                                 sobjectName : 'Student__c',
+                                                                 Name: '',
+                                                                 Gender__c: '',
+                                                                 Semester__c: ''}
+                                                                 Img_Url__c: ''}" />
+
+    <div>
+        <p style="text-align: center; color:purple">Powered by
+            CRUD©&nbsp;&nbsp;{InsertNewStudnetDataW.cmp}</p>
+    </div>
+
+    <div class="">
+
+        <lightning:input type="text" aura:id="studentForm" class="textInput" value="{!v.InsertStudent.Img_Url__c}"
+            label="Profile Image Url" />
+        <lightning:input type="text" aura:id="studentForm" class="textInput"
+            messageWhenValueMissing="Please enter Student Name" value="{!v.InsertStudent.Name}" label="Name"
+            required="true" onchange="{!c.fieldValidate}" />
+        <lightning:select aura:id="genderValue" name="genderValue" label="Gender" required="true"
+            onchange="{!c.selectGender}">
+            <option value="">choose one..</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+        </lightning:select>
+
+        <lightning:select aura:id="semesterValue" name="semesterValue" label="Semester" required="true"
+            onchange="{!c.selectSemester}">
+            <option value="">choose one..</option>
+            <option value="Summer">Summer</option>
+            <option value="Winter">Winter</option>
+            <option value="Spring">Spring</option>
+            <option value="Fall">Fall</option>
+
+        </lightning:select>
+
+        <lightning:input type="number" aura:id="studentForm" class="textInput" value="Summer-{000152---}"
+            label="Auto Generated ID" disabled="true" />
+
+
+
+        <lightning:button class="slds-m-top_medium" label="Insert New Student Data" variant="brand"
+            onclick="{!c.doSave}" disabled="{!v.buttonDis}" />
+    </div>
+</aura:component>
